@@ -121,6 +121,21 @@
 				return false;
 			}
 		}
+
+		function getAllNumbersOfTache($idag) {
+			$req = $this->bdd->query("SELECT COUNT('idAgent') AS compte FROM tache WHERE idAgent='$idag'");
+			$tabTache = array();
+			while($data = $req->fetch()) {
+				$a =$data['compte'];
+				
+				
+			}
+			
+			$req->closeCursor();
+			
+			return $a;
+		}
+
 	}
 
 ?>

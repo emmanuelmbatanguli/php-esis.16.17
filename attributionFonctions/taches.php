@@ -10,7 +10,7 @@
 		
 		<div>
 			<h2>Attribuer une tâche à un Agent</h2>
-			<form method="post" action="__add_tache.php">
+			<form method="post" action="tache.dao.interro.php">
 				<label for="description">Description :</label>
 				<input type="text" name="description" id="description" /><br />
 				<label for="datedebut">Date début :</label>
@@ -62,10 +62,13 @@
 						<th>AGENT</th>
 						<th>MODIFIER</th>
 						<th>SUPPRIMER</th>
+						<th>nombre de tâches</th>
 					</tr>
 				';
 				$compteur = 1;
+				$nom="";
 				foreach($lt as $t) {
+					$emma=$tdao->getAllNumbersOfTache($t->getIdAgent());
 					echo '<tr>
 							<td>'.$compteur.'</td>
 							<td>'.$t->getDescription().'</td>
@@ -78,11 +81,13 @@
 							echo '
 								<td>'.$a->getNom().'</td>
 							';
+							$nom=$a->getNom();
 							break;
 						}
 					}
-					echo '<td><a href="changer_tache.php?id='.$t->getId().'"><img src="ct.png" alt="change" width="40px;" /></a></td>';
-					echo '<td><a href="del_tache.php?id='.$t->getId().'"><img src="dt.png" alt="change" width="30px;" /></a></td>';
+					echo '<td><a href="update.dao.interro.php?id='.$t->getId().'"><img src="ct.png" alt="change" width="42px;" /></a></td>';
+					echo '<td><a href="delete_it.php?id='.$t->getId().'"><img src="dt.png" alt="change" width="33px;" /></a></td>';
+					echo '<td>'.$emma.'</td>';
 					echo '</tr>';
 					$compteur++;
 				}
